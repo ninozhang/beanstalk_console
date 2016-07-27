@@ -16,29 +16,10 @@ ADD docker/php.ini /usr/local/lib/php.ini
 # beanstalk console config
 ADD docker/run.sh /usr/local/bin/run
 
-RUN { \
-    echo '<FilesMatch \.php$>'; \
-    echo '\tSetHandler application/x-httpd-php'; \
-    echo '</FilesMatch>'; \
-    echo; \
-    echo 'DirectoryIndex disabled'; \
-    echo 'DirectoryIndex index.php index.html'; \
-    echo; \
-    echo '<Directory /var/www/>'; \
-    echo '\tOptions -Indexes'; \
-    echo '\tAllowOverride All'; \
-    echo '\tAllow from all'; \
-    echo '</Directory>'; \
-  } | tee "$APACHE_CONFDIR/conf-available/docker-php.conf" \
-  && a2enconf docker-php
-
 # Change ownership for apache happiness & install Composer
 RUN chmod 777 /usr/local/bin/run && \
     chown -R www-data:www-data /var/www && \
     chmod 777 /var/www && \
-    echo 'docker-php.conf---' && \
-    cat /etc/apache2/conf-available/docker-php.conf && \
-    service apache2 restart && \
     a2enmod rewrite
 
 WORKDIR /var/www

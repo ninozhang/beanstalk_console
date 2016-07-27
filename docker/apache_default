@@ -17,17 +17,14 @@ IncludeOptional mods-enabled/*.conf
 
 # ports.conf
 Listen ${APACHE_PORT}
-<IfModule ssl_module>
-	Listen ${APACHE_SSL_PORT}
-</IfModule>
 <IfModule mod_gnutls.c>
 	Listen ${APACHE_SSL_PORT}
 </IfModule>
 
 <Directory />
 	Options FollowSymLinks
-	AllowOverride None
-	Require all denied
+	AllowOverride All
+	Require all granted
 </Directory>
 
 <Directory /var/www/>
