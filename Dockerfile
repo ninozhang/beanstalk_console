@@ -10,7 +10,7 @@ ADD . /var/www
 # Add custom default apache virutal host with combined error and access
 # logging to stdout
 ADD docker/apache_default /etc/apache2/apache2.conf
-ADD docker/apache_default /etc/apache2/sites-available/000-default.conf
+ADD docker/apache_root /etc/apache2/sites-available/000-default.conf
 ADD docker/php.ini /usr/local/lib/php.ini
 
 # Add custom entrypoint to inject runtime environment variables into
