@@ -18,7 +18,7 @@ ADD docker/run.sh /usr/local/bin/run
 
 # Change ownership for apache happiness & install Composer
 RUN chmod +x /usr/local/bin/run && \
-    chown -R www-data:www-data /var/www && \
+    chown -R root:root /var/www && \
     a2enmod rewrite
 
 WORKDIR /var/www
