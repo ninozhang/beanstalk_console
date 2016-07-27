@@ -38,6 +38,7 @@ RUN chmod 777 /usr/local/bin/run && \
     chmod 777 /var/www && \
     echo 'docker-php.conf---' && \
     cat /etc/apache2/conf-available/docker-php.conf && \
+    service apache2 restart && \
     a2enmod rewrite
 
 WORKDIR /var/www
