@@ -20,6 +20,10 @@ ADD docker/run.sh /usr/local/bin/run
 RUN chmod 777 /usr/local/bin/run && \
     chown -R www-data:www-data /var/www && \
     chmod 777 /var/www && \
+    echo 'docker-php.conf---' && \
+    cat /etc/apache2/conf-available/docker-php.conf && \
+    echo 'httpd.conf---' && \
+    cat /etc/apache2/httpd.conf && \
     a2enmod rewrite
 
 WORKDIR /var/www
